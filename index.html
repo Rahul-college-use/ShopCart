@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box_1">
+        <div class="box_2">
+
+            <div class="item">
+                <h3>Item Name</h3>
+                <input type="text" name="" placeholder="Enter Item" id="item_name">
+            </div>
+            <div class="Amount">
+                <h3>Price of item</h3>
+                <input type="number" name="" placeholder="Enter Price" id="price">
+            </div>
+
+
+
+
+
+            <input type="button" value="Add" id="add" class="Btn">
+            <input type="button" value="Clear All" id="clear" class="Btn">
+
+            <div class="add_items">
+                <li id="add_items"></li>
+
+            </div>
+
+            <div class="total">
+                <h3>Total Amount :- <span id="total_price">0</span></h3>
+                <input type="button" value="Go To Pay " id="pay" class="Btn">
+            </div>
+
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
