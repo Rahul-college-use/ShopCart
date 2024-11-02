@@ -1,80 +1,82 @@
-let item_name = document.querySelector('#item_name');
-let price = document.querySelector('#price');
-let addBtn = document.querySelector('#add');
-let clearBtn = document.querySelector('#clear');
-let add_item_box = document.querySelector('.add_items');
-let add_item = document.querySelector('#add_items');
-let total_price = document.querySelector('#total_price');
-let sum = 0
-let pay=document.querySelector('#pay')
-// console.log(add_item); // Check if add_item is not null
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.box_1{
+    height: 100vh;
+    /* width: 100%; */
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-left: 7rem;
+}
+.box_2{
+    /* margin: 0 30px 0 40px; */
+    width: 50vmax;
+    background: #d1cc8b;
+    border: none;
+    border-radius: 1rem;
+    display: flexbox;
+    justify-items: center;
 
-addBtn.addEventListener('click', () => {
+}
+.item,.Amount{
+    padding: 1vmax;
+}
+.item,.Amount h3 {
+    font-size: 1.5vmax;
+    color: #000;
+    font-weight: 600;
+}
+.item input,.Amount input{
+    height: 2.9vmax;
+    width: 18.5vmax;
+    border: 1px solid brown;
+    border-radius: .1rem;
+    text-align: center;
 
-    if (item_name.value != '' && price.value != '') {
-        let newDiv = document.createElement('ul');
-        add_item_box.style.display = 'block'
-        newDiv.style.margin = '1vmax';
-        newDiv.innerText = item_name.value;
-
-        // Insert newDiv before add_item if add_item exists
-        if (add_item && add_item.parentNode) {
-            add_item.parentNode.insertBefore(newDiv, add_item);
-        } else {
-            console.error("add_item or its parentNode is not found.");
-        }
-
-
-
-        sum += parseInt(price.value); // Handle any invalid price input as 0
-        total_price.innerText = sum;
-        item_name.value = ''
-        price.value = ''
-
-        let clear = () => {
-            console.log("clear btn")
-            // Clear functionality goes here
-            newDiv.innerText = ''
-            add_item_box.style.display = 'none'
-            sum = 0
-            total_price.innerText = 0
-        };
-
-
-        clearBtn.addEventListener('click', clear);
-
-    }
-
-
-    else {
-        alert("Please fill in both item name and price.");
-
-    }
-
-
-});
-
-pay.addEventListener('click', async () => {
-    const itemName = item_name.value || 'Default Item';
-    const priceValue = sum;
-
-    try {
-        const response = await fetch('http://localhost:3000/create-payment-link', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ itemName, price: priceValue }),
-        });
-
-        const data = await response.json();
-        if (data.url) {
-            window.location.href = data.url; // Redirect to the Stripe payment link
-        } else {
-            alert('Failed to create payment link');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error creating payment link');
-    }
-});
+}
+.Btn{
+    margin-left: 2vmax;
+    padding: 1vmax;
+    border: #000;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.total{
+    padding: 2vmax;
+}
+.total h3{
+    font-size: 2.5vmax;
+}
+#pay{
+    margin-top: 1vmax;
+    background: lightgreen;
+    font-weight: 900;
+    color: blue;
+}
+#pay:hover{
+    background: rgb(42, 164, 239);
+    color: azure;
+    transition: all .5s ease;
+}
+.add_items{
+    padding: 1vmax;
+    width: 20vmax;
+    background: rgb(190, 182, 182);
+    margin-top: 1vmax;
+    display: none;
+}
+.add_items li{
+    list-style:none;
+}
+#clear:hover{
+    background: rgb(187, 58, 58);
+    transition: all .5s ease;
+}
+#add:hover{
+    background: rgb(94, 58, 187);
+    transition: all .5s ease;
+    color: antiquewhite;
+}
